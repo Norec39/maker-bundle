@@ -233,6 +233,19 @@ class Generator
         );
     }
 
+    public function generateService(string $serviceClassName, string $serviceTemplatePath, array $parameters = []): string
+    {
+        return $this->generateClass(
+            $serviceClassName,
+            $serviceTemplatePath,
+            $parameters +
+            [
+                'generator' => $this->templateComponentGenerator,
+                'parent_class_name' => static::getControllerBaseClass()->getShortName(),
+            ]
+        );
+    }
+
     /**
      * Generate a template file.
      */
